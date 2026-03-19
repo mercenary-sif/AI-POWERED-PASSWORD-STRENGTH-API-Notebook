@@ -1,0 +1,7 @@
+# Virtual environments
+password-api/
+venv/
+env/
+
+# Environment variables
+.env
