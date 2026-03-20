@@ -332,6 +332,12 @@ Saved artifacts:
 - `char_vocab.pkl` — character-to-index mapping
 - `bilstm_training_log.csv` — epoch-by-epoch metrics
 
+> **Inference runtime:** The model is served via **ONNX Runtime** 
+> (`onnxruntime==1.18.0`) instead of TensorFlow — this eliminates 
+> the Python version constraint and reduces cold start time on Render 
+> from ~60s to ~5s. The `.keras` model was converted to ONNX once 
+> using `tf2onnx` with `opset=13`.
+
 Evaluation on held-out test set:
 ```python
 test_loss, test_acc = model.evaluate(X_test_seq, y_test_cat, batch_size=128)
@@ -485,8 +491,8 @@ backend/
 ### Prerequisites
 
 - Python 3.10+
-- `models/bilstm_password_model.keras` — trained model
-- `vocab/char_vocab.pkl` — character vocabulary
+- `saved_model/bilstm_password_model.onnx` — trained model
+- `saved_model/char_vocab.pkl` — character vocabulary
 
 ### Install
 

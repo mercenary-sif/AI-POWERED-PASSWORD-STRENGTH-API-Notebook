@@ -4,7 +4,9 @@ from app.utils.preprocessing import load_vocab
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-MODEL_PATH = BASE_DIR / "saved_model" / "bilstm_password_model (1).keras"
+# MODEL_PATH = BASE_DIR / "saved_model" / "bilstm_password_model (1).keras"
+
+MODEL_PATH = BASE_DIR / "saved_model" / "bilstm_password_model.onnx"
 VOCAB_PATH = BASE_DIR / "saved_model" / "char_vocab.pkl"
 
 _model = None
