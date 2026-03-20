@@ -73,7 +73,13 @@ def predict(password: str) -> dict:
 
     # ── Model inference ─────────────────────────────────────────
     # output: softmax probs [weak, medium, strong] — shape (1, 3)
-    probs    = model.predict(sequence, verbose=0)[0]
+    # probs    = model.predict(sequence, verbose=0)[0]
+    input_name  = model.get_inputs()[0].name
+    output_name = model.get_outputs()[0].name
+    probs = model.run(
+        [output_name],
+        {input_name: sequence.astype(np.int32)}
+    )[0][0]
     class_id = int(np.argmax(probs))
     label    = LABEL_MAP[class_id]
 
